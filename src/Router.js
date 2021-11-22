@@ -1,24 +1,46 @@
-import { Provider as ReduxProvider } from "react-redux";
-import { Switch, Route } from "react-router";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
+import NavBar from './components/NavBar'
+import Dashboard from "./containers/Dashboard"
+import Login from "./containers/Login"
+import Listings from "./containers/Listings"
+import cookie from 'cookie'
 
-import Details from "./components/Details";
-import List from "./components/List";
-import Login from "./components/Login";
-import Navbar from "./components/NavBar";
 
-const Router = () => {
-  return(
-    <Switch>
-      <Router exact path='/'>
-        <Navbar />
-        <Login />
-      </Router>
-      <Router exact path='/listings'>
-        <Navbar />
-        <List />
-      </Router>
-    </Switch>
-  )
+export default function Router() {
+
+    const checkAuth = () => {
+        const cookies = cookie.parse(document.cookie)
+        return cookies["loggedIn"] ? true : false
+    }
+
+    const ProtectedRoute = ({component: Component, ...rest}) => {
+        return (
+          <Route
+          {...rest}
+          render={(props) => checkAuth()
+              ? <Component {...props} />
+              : <Redirect to="/login" />}
+          />
+        )
+      }
+
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/"> 
+                    <NavBar />
+                    <Dashboard />
+                </Route>
+                <Route path="/login"> 
+                    <NavBar />
+                    <Login/>
+                </Route>
+                <Route path="/listings"> 
+                    <NavBar />
+                    <Listings />
+                </Route>
+            </Switch>
+        </BrowserRouter>
+
+    )
 }
-
-export default Router;

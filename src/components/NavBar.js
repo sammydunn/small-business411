@@ -1,36 +1,43 @@
-import React from 'react';
-import { Button } from '@material-ui/core'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import {Button, IconButton} from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu';
 
-const Navbar = () => {
-  return (
-    <div style={{
-    backgroundColor:"lavender",
-    width:"100%",
-    margin:"auto", 
-    height:"80px", 
-    display:"grid",
-    gridTemplateColumns:"1fr 1fr",
+export default function NavBar() {
 
-    }}>
-      <div style={{
-        marginLeft:"20px",
-        textAlign:"left"
-      }}>
-        <h2>Austin Small Business</h2>
-      </div>
-      <div style={{
-        display:"flex",
-        height:"80px",
-        flexDirection:"row",
-        margin:"auto",
-        justifyContent:"flex-end",
-        alignItems:"center"
-      }}>
-    <Button variant="contained" color="primary" style={{margin:"10px"}}>Login</Button>
-    <Button variant="contained" color="primary" style={{margin:"10px"}}>Listings</Button>
-      </div>
-    </div>
-  );
+
+    return (
+        <div style={{
+                width:"100%",
+                minWidth:"500px",
+                margin:"auto",
+                height:"80px", 
+                backgroundColor:"#76D7C4", 
+                display:"grid", 
+                gridTemplateColumns:"25% auto 25%",
+                alignItems:"center"
+            }}>
+            <div style={{textAlign:'left', paddingLeft:'30px'}}>
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mr: 2 }}
+                >
+                    <MenuIcon />
+                </IconButton>
+            </div>
+            <div style={{minWidth:"200px", margin:'auto'}}>
+                <h3>My Local Favorite Restaurants</h3>
+            </div>
+            <div style={{display:"flex", justifyContent:"right", margin:'auto', maxWidth:"300px"}}>
+                <nav style={{}}>
+                    <Link  style={{textDecoration:'none'}} to="/"><Button variant="contained" >Home</Button></Link>
+                    <Link  style={{textDecoration:'none'}} to="/listings"><Button variant="contained" >Listings</Button></Link>
+                    <Link  style={{textDecoration:'none'}} to="/login"><Button variant="contained" >Login</Button></Link>
+                </nav>
+            </div>
+        </div>
+    )
 }
-
-export default Navbar;

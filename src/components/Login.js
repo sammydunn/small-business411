@@ -1,52 +1,39 @@
-import React, { useState } from 'react';
-import {Paper, TextField, Button} from '@material-ui/core'
+import React from 'react'
+import TextField from '@mui/material/TextField';
+import { Button } from '@mui/material';
+import { useHistory } from 'react-router';
 
-const Login = () => {
+export default function Login(props) {
+    const history = useHistory()
 
-  const [user, setUser] = useState({username:"",loggedIn:false})
+    function handleClick()  {
+        console.log('click')
+        document.cookie = "loggedIn=true;max-age=60*1000"
+        props.fetchList()
+        history.push('/listings')
 
-  const handleChange = (e) => {
-    //console.log(e.target.value)
-    setUser((previousUser) => ({
-      ...previousUser,
-      username: e.target.value 
-    }))
-  }
+    }
 
-  const handleClick = (e) => {
-    setUser((previousUser) => ({
-      ...previousUser,
-      loggedIn: true
-    }))
-  }
+    function handleLogout(e)  {
+        document.cookie = "loggedIn=;expires=Thu, 01 Jan 1970 00:00:00 GMT"
+        console.log('logout')
+    }
 
-  return (
-    <div>
-      <Paper style={{
-        width:"400px",
-        height:"400px", 
-        boxShadow:"2px",
-        margin:"auto",
-        paddingTop:"20px",
+    return (
+        <div style={{width:"400px", margin:"auto", border:"1px black solid", marginTop:"40px", borderRadius:"10px", boxShadow:" 0 0 5px" }}>
+            <div style={{margin:"40px"}}>
 
-      }}>
-          <h3>Log In</h3>
-          <div style={{
-            width:"300px",
-            margin:"auto"
-          }}>
-        <TextField fullWidth variant="filled" label="Usernam" onChange={handleChange} style={{
-          marginBottom:"15px",
-        }}></TextField>
-        <TextField fullWidth variant="filled" label="Password" style={{
-          marginBottom:"15px",
-        }}></TextField>
-        <Button variant="contained" color="primary" onClick={handleClick}>Click</Button>
-        {console.log(user)}
+            <h1>Login</h1>
+
+            <div>
+                <TextField style={{marginBottom:"20px"}} fullWidth label="Username" variant="outlined" />
+                <TextField fullWidth type="password" label="Username" variant="outlined" />
+                <Button onClick={(e)=>handleClick(e)}>login</Button>
+                <Button onClick={()=>handleLogout()}>logout</Button>
+
+            </div>
+            </div>
+
         </div>
-      </Paper>
-    </div>
-  );
+    )
 }
-
-export default Login;
