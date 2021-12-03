@@ -10,26 +10,25 @@ export default function Details(props) {
     const cookies = cookie.parse(document.cookie)
 
     return (
-        <div style={{width:"400px", 
+        <div style={{
+        width:"500px",
         height:"auto", 
-        margin:"auto", 
-        border:"1px black solid", 
-        marginTop:"40px", 
+        margin:"20px auto 20px auto", 
         borderRadius:"10px", 
-        boxShadow:" 0 0 4px" 
+        boxShadow:" 0 0 4px",
+        textAlign:"center"
     }}
     >
         {console.log(cookie.parse(document.cookie))}
             {cookies.loggedIn && <div>hello</div>}
-            <div style={{margin:"30px", textAlign:"center"}}>
+            <div style={{margin:"30px auto auto auto", textAlign:"center", width:'400px'}}>
                 <h1>{name}</h1>
                 <p style={{textAlign:"left"}}>{description}</p>
                 <Button variant="contained" style={{marginBottom:"10px"}} onClick={()=> isHidden(!hidden)} >Details</Button>
             </div>
             {!hidden && (
-                <div>
-                    <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", margin:"20px"}}>
-                        <ol style={{listStyleType:"none", padding: "0", fontSize:"12px", margin:"20px"}}>
+                    <div style={{display:"grid", gridTemplateColumns:"150px 300px", paddingBottom:"20px", margin:"auto auto 20px auto", gridAutoRows:"auto", width:'500px', gridColumnGap:'20px', justifyContent:'center'}}>
+                        <ol style={{listStyleType:"none", padding: "0", fontSize:"12px", margin:"20px", gridRow:'span 2', display:'flex', flexDirection:'column', justifyContent:'center'}}>
                             <h3>Hours:</h3>
                             <li><strong>Monday:</strong> <br/>{ophours.Monday}</li>
                             <li><strong>Tuesday: </strong><br/>{ophours.Tuesday}</li>
@@ -45,9 +44,8 @@ export default function Details(props) {
                             <li>{address.city + ' ' + address.state}</li>
                             <li>{address.zip}</li>
                         </ol>
-                    </div>
                     <Maps address={address} />
-                </div>
+                    </div>
             )}
         </div>
     )

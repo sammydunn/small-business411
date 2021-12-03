@@ -1,3 +1,4 @@
+
 //create functions for the cases switch in reducers.js file
 
 import { smallbizdata } from "../data/smallbizdata"

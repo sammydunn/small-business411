@@ -1,17 +1,18 @@
 import {connect} from 'react-redux';
-import Listings from '../components/Listings';
-import { fetchList } from '../redux/actions';
+import App from '../App';
+import { addBusiness, fetchList } from '../redux/actions';
 
 const mapStateToProps = ({businesses}) => {
     return {
         businesses
     }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        addBusiness: (body) => dispatch(addBusiness(body)),
         fetchList: () => dispatch(fetchList())
     }
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Listings);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

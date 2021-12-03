@@ -14,7 +14,7 @@ export default function NavBar() {
                 height:"80px", 
                 backgroundColor:"#76D7C4", 
                 display:"grid", 
-                gridTemplateColumns:"25% auto 25%",
+                gridTemplateColumns:"30% auto 30%",
                 alignItems:"center"
             }}>
             <div style={{textAlign:'left', paddingLeft:'30px'}}>
@@ -31,11 +31,11 @@ export default function NavBar() {
             <div style={{minWidth:"200px", margin:'auto'}}>
                 <h3>My Local Favorite Restaurants</h3>
             </div>
-            <div style={{display:"flex", justifyContent:"right", margin:'auto', maxWidth:"300px"}}>
-                <nav style={{}}>
-                    <Link  style={{textDecoration:'none'}} to="/"><Button variant="contained" >Home</Button></Link>
-                    <Link  style={{textDecoration:'none'}} to="/listings"><Button variant="contained" >Listings</Button></Link>
-                    <Link  style={{textDecoration:'none'}} to="/login"><Button variant="contained" >Login</Button></Link>
+            <div style={{display:"flex", justifyContent:"space-around", margin:'auto', maxWidth:"500PX"}}>
+                <nav style={{display:'flex', justifyContent:"space-evenly", margin:"auto"}}>
+                    <Link  style={{textDecoration:'none', margin:"5px"}} to="/dashboard"><Button variant="contained" >Dashboard</Button></Link>
+                    <Link  style={{textDecoration:'none', margin:"5px"}} to="/listings"><Button variant="contained" >Listings</Button></Link>
+                    <Link  style={{textDecoration:'none', margin:"5px"}} to="/login"><Button variant="contained" >Login</Button></Link>
                 </nav>
             </div>
         </div>

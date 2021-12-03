@@ -9,9 +9,7 @@ export default function Login(props) {
     function handleClick()  {
         console.log('click')
         document.cookie = "loggedIn=true;max-age=60*1000"
-        props.fetchList()
-        history.push('/listings')
-
+        history.push('/dashboard')
     }
 
     function handleLogout(e)  {
@@ -22,9 +20,9 @@ export default function Login(props) {
     return (
         <div style={{width:"400px", margin:"auto", border:"1px black solid", marginTop:"40px", borderRadius:"10px", boxShadow:" 0 0 5px" }}>
             <div style={{margin:"40px"}}>
-
+            
             <h1>Login</h1>
-
+            
             <div>
                 <TextField style={{marginBottom:"20px"}} fullWidth label="Username" variant="outlined" />
                 <TextField fullWidth type="password" label="Username" variant="outlined" />

@@ -1,9 +1,9 @@
 import React from 'react'
-import { GoogleMap } from '@react-google-maps/api';
+import { GoogleMap, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '400px',
-  height: '400px'
+  width: '300px',
+  height: '300px'
 };
 
 
@@ -16,6 +16,7 @@ function Maps(props) {
         center={{ lat:+lat, lng: +long}}
         zoom={15}
       >
+        <Marker position={{ lat:+lat, lng: +long }} />
         { /* Child components, such as markers, info windows, etc. */ }
       </GoogleMap>
   )

@@ -1,5 +1,4 @@
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
-import NavBar from './components/NavBar'
+import { Switch, Route, Redirect } from "react-router-dom"
 import Dashboard from "./containers/Dashboard"
 import Login from "./containers/Login"
 import Listings from "./containers/Listings"
@@ -12,8 +11,10 @@ export default function Router() {
         const cookies = cookie.parse(document.cookie)
         return cookies["loggedIn"] ? true : false
     }
-
-    const ProtectedRoute = ({component: Component, ...rest}) => {
+  
+    const ProtectedRoute = ({
+        component: Component, ...rest
+    }) => {
         return (
           <Route
           {...rest}
@@ -23,24 +24,16 @@ export default function Router() {
           />
         )
       }
-
+      
     return (
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/"> 
-                    <NavBar />
-                    <Dashboard />
-                </Route>
-                <Route path="/login"> 
-                    <NavBar />
-                    <Login/>
-                </Route>
-                <Route path="/listings"> 
-                    <NavBar />
-                    <Listings />
-                </Route>
+     
+            <Switch>        
+                <Route exact path="/" component={Listings}/>
+                <Route path="/login" component={Login}/>
+                <Route path="/listings" component={Listings}/>
+                <ProtectedRoute path="/dashboard" component={Dashboard}/>
             </Switch>
-        </BrowserRouter>
-
+       
+       
     )
 }

@@ -1,17 +1,23 @@
-import { Provider } from 'react-redux';
-import './App.css';
-import Router from './Router';
-import store from './redux/store'
+import React, { useEffect } from "react";
+import "./App.css";
+import Router from "./Router";
 
 
-function App() {
+import { BrowserRouter } from "react-router-dom";
+import NavBar from "./components/NavBar";
+
+function App(props) {
+  useEffect(() => {
+    props.fetchList();
+  },[]);
+
   return (
+   
     <div className="App">
-      <Provider store={store}>
-        <Router/>
-      </Provider>
-
-      
+      <BrowserRouter>
+        <NavBar />
+        <Router />
+      </BrowserRouter>
     </div>
   );
 }
